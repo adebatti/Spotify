@@ -49,15 +49,12 @@ for pre_playlist_track in pre_playlist_tracks:
         else:
             genres[artist_genre] = [track_uri]
 
-
-""" sorted_genres_keys = sorted(genres, key=lambda genre: len(genres[genre]), reverse=True)
-sorted_genres = {key: {'size':len(genres[key]),'track uris':genres[key]} for key in sorted_genres_keys} """
+genres = dict(sorted(genres.items(), key=lambda i: -len(i[1])))
 
 print(playlist_name + ' is comprised of the following genres:')
 
 for genre in genres:
-    if len(genres[genre]) <= 5:
-        print(genre + ': ' + str(len(genres[genre])) + ' songs')
+    print(genre + ': ' + str(len(genres[genre])) + ' songs')
 
 playlist_genre = ''
 while playlist_genre != 'quit':
@@ -71,8 +68,3 @@ while playlist_genre != 'quit':
     playlist = prePlaylist['items'][0]['id']
     spotifyObject.user_playlist_add_tracks(user=username,playlist_id=playlist,tracks=genres[playlist_genre])
 #add catch for incorect spelling and whatnot 
-
- """
-""" # find genre occurances for each artist
-""" for playlist_track in playlist_tracks_data:
-    pre_artists = spotifyObject.artists(playlist_track['artist uri'])['artists'] """ """
