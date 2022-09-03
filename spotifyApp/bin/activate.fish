@@ -30,7 +30,7 @@ end
 # Unset irrelevant variables.
 deactivate nondestructive
 
-set -gx VIRTUAL_ENV "/Users/anniedebattista/Documents/Programming/spotifyplaylistgenerator/spotifyplaylistgenerator/spotifyApp"
+set -gx VIRTUAL_ENV "/Users/anniedebattista/Documents/Programming/Spotify/spotifyApp"
 
 set -gx _OLD_VIRTUAL_PATH $PATH
 set -gx PATH "$VIRTUAL_ENV/bin" $PATH
