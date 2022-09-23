@@ -13,21 +13,23 @@ TASKS:
 - make modular 
 """
 
-scope = 'playlist-modify-public'
-username = '12145383885'
-
-token = SpotifyOAuth(scope=scope,username=username)
-spotifyObject = spotipy.Spotify(auth_manager = token)
+scope = 'playlist-modify-private'
+#username = '12145383885'
+#auth_manager = SpotifyClientCredentials()
+spotifyObject = spotipy.Spotify(auth_manager=SpotifyOAuth(scope=scope))
+#token = SpotifyOAuth(scope=scope,username=username)
+#spotifyObject = spotipy.Spotify(auth_manager = token)
 
 #Ask user for name of playlist to split
 playlist_name_user_input = input('Enter the name of your playlist: ').lower()
 
 #Parse through user playlists to find most recently created playlist with matching name and retrive URI
-playlist_name = ''
+playlist_name_lower = ''
 i = 0
-while (playlist_name.lower() != playlist_name_user_input):
+while (playlist_name_lower != playlist_name_user_input):
     pre_user_playlists = spotifyObject.current_user_playlists(limit=i+1,offset=i) #Current playlist information  
     playlist_name = pre_user_playlists['items'][0]['name'] #Current playlist name 
+    playlist_name_lower = playlist_name.lower()
     i += 1
     # POSSIBLE BUG: if no playlist matches user input. 
 playlist_uri = pre_user_playlists['items'][0]['uri'] #Playlist URI 
